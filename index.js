@@ -5,6 +5,10 @@ import mongoose from 'mongoose';
 import blogs from './api/blogsData.json' assert { type: 'json' };
 import UserRouter from './routes/userRoutes.js'
 import BlogeRouter from './routes/blogRoutes.js'
+import dotenv from 'dotenv';
+dotenv.config();
+
+const PORT= process.env.PORT || 8000
 
 const app = express()
 
@@ -20,7 +24,7 @@ app.use("/blog",BlogeRouter)
 
 //*mongodb connection
 const MONGODB_URL="mongodb+srv://omar:JhB4IyKLdAzUna1u@blog-server.01rgith.mongodb.net/?retryWrites=true&w=majority"
-const port = 5000;
+// const port = 5000;
 
 main().catch(err => console.log(err))
 async function main(){
@@ -43,7 +47,11 @@ app.get('/blogs/:id', (req, res) => {
   res.send(blog)
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
+
+app.listen(PORT,()=>{
+  console.log(`Server is running on port ${PORT}`);
 })
 
